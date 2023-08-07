@@ -11,9 +11,13 @@ export const PlayerStatusRoute = () => {
     const [inputValue, setInputValue] = useState("");
     const [searchValue, setSearchValue] = useState("");
     const [playerGames, setPlayerGames] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (inputValue) {
+            setIsLoading(true);
+            setPlayer(null);
+            setPlayerGames(null);
             fetchPlayerData(inputValue).then((jsonData) => {
                 const fetchedPlayer = jsonData[0];
                 setPlayer(fetchedPlayer);
@@ -22,9 +26,15 @@ export const PlayerStatusRoute = () => {
                     fetchPlayerGames(fetchedPlayer.userName)
                         .then((gamesData) =>{
                             setPlayerGames(gamesData);
+                            setIsLoading(false)
                             console.log("gamesData", gamesData);
                         })
-                        .catch((error) => console.error("Error fetching player games:", error));
+                        .catch((error) => {
+                            console.error("Error fetching player games:", error)
+                            setIsLoading(false)
+                        });
+                }else{
+                    setIsLoading(false)
                 }
             });
         }
@@ -54,13 +64,17 @@ export const PlayerStatusRoute = () => {
                     Search
                 </Button>
             </div>
-            {player ? (
+            {isLoading ? (
+                <div className="loading-container">
+                    {/* Replace this with your preferred loading icon */}
+                    <p>Loading...</p>
+                </div>
+            ) : player ? (
                 <div>
                     <PlayerStatus player={player} />
                     <GamesDetails games={playerGames} />
                 </div>
-                )
-                : inputValue === "" ? (
+            ) : inputValue === "" ? (
                 <p className="message">Enter a player name</p>
             ) : (
                 <p className="message">Player not found</p>
