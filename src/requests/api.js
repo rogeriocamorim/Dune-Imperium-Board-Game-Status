@@ -1,8 +1,23 @@
 const url = '127.0.0.1:8080'
-const fetchPlayerData = async (inputValue) => {
+const fetchPlayerWinRate = async (inputValue) => {
     try {
         const response = await fetch(
-            `http://${url}/player-status/player-status?name=${inputValue}`
+            `http://${url}/player-status/player-win-rate?name=${inputValue}`
+        );
+        if (!response.ok) {
+            console.log('Request failed!');
+            return [];
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error with the server fetching player data:', error);
+    }
+};
+
+const fetchPlayerWinRateByLeader = async (inputValue) => {
+    try {
+        const response = await fetch(
+            `http://${url}/player-status/player-win-rate-by-leader?name=${inputValue}`
         );
         if (!response.ok) {
             console.log('Request failed!');
@@ -17,7 +32,7 @@ const fetchPlayerData = async (inputValue) => {
 const fetchPlayerGames = async (inputValue) => {
     try {
         const response = await fetch(
-            `http://${url}/game/playerGames?steamName=${inputValue}`
+            `http://${url}/game/player-games?steamName=${inputValue}`
         );
         if (!response.ok) {
             console.log('Request failed!');
@@ -29,4 +44,4 @@ const fetchPlayerGames = async (inputValue) => {
     }
 }
 
-export { fetchPlayerData, fetchPlayerGames };
+export { fetchPlayerWinRate, fetchPlayerWinRateByLeader, fetchPlayerGames };

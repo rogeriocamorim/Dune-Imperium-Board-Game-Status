@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {fetchPlayerData, fetchPlayerGames} from "../../requests/api";
+import {fetchPlayerWinRate, fetchPlayerWinRateByLeader, fetchPlayerGames} from "../../requests/api";
 import { TextField, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import "./playerStatus.css";
 import {PlayerStatus} from "../../components/playerStatus/PlayerStatus";
-import GamesDetails from "../../components/gameDetails/GamesDetails"; // Import the CSS file where your styles are defined
+import GamesDetails from "../../components/gameDetails/GamesDetails";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const PlayerStatusRoute = () => {
     const [player, setPlayer] = useState(null);
@@ -18,7 +19,7 @@ export const PlayerStatusRoute = () => {
             setIsLoading(true);
             setPlayer(null);
             setPlayerGames(null);
-            fetchPlayerData(inputValue).then((jsonData) => {
+            fetchPlayerWinRate(inputValue).then((jsonData) => {
                 const fetchedPlayer = jsonData[0];
                 setPlayer(fetchedPlayer);
                 console.log("fetchedPlayer", fetchedPlayer)
@@ -65,9 +66,11 @@ export const PlayerStatusRoute = () => {
                 </Button>
             </div>
             {isLoading ? (
-                <div className="loading-container">
-                    {/* Replace this with your preferred loading icon */}
+                <div className="loading-msg-container">
                     <p>Loading...</p>
+                    <div className="loading-icon-container">
+                        <ClipLoader color={"#ff8906"} size={50} />
+                    </div>
                 </div>
             ) : player ? (
                 <div>
