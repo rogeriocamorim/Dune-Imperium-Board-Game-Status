@@ -4,7 +4,7 @@ import { TextField, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import "./playerStatus.css";
 import {PlayerStatus} from "../../components/playerStatus/PlayerStatus";
-import GamesDetails from "../../components/gameDetails/GamesDetails";
+import GamesDetails from "../../components/GameDetails";
 import ClipLoader from "react-spinners/ClipLoader";
 
 export const PlayerStatusRoute = () => {
@@ -51,16 +51,12 @@ export const PlayerStatusRoute = () => {
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                 />
-                <Button
-                    variant="contained"
-                    color="primary"
-                    className="search-button"
-                    style={{
-                        padding: "15px 16px",
-                        backgroundColor: "#ff8906",
-                    }}
-                    onClick={() => setInputValue(searchValue)}
-                    startIcon={<SearchIcon />}
+                <Button variant="contained"
+                        color="primary"
+                        className="search-button"
+                        style={{padding: "15px 16px", backgroundColor: "#ff8906",}}
+                        onClick={() => setInputValue(searchValue)}
+                        startIcon={<SearchIcon />}
                 >
                     Search
                 </Button>
