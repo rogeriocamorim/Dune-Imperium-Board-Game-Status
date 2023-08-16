@@ -44,4 +44,17 @@ const fetchPlayerGames = async (inputValue) => {
     }
 }
 
-export { fetchPlayerWinRate, fetchPlayerWinRateByLeader, fetchPlayerGames };
+const fetchGameDetails = async (id) => {
+    try {
+        const response = await fetch(`http://${url}/game/details?gameId=${id}`);
+        if (!response.ok) {
+            console.log("Request failed!");
+            return [];
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching game details:", error);
+    }
+};
+
+export { fetchPlayerWinRate, fetchPlayerWinRateByLeader, fetchPlayerGames, fetchGameDetails };

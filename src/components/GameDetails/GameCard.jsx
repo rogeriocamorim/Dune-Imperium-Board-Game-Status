@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
+import {fetchGameDetails} from "../../requests/api";
 
 const formatDate = (timestamp) => {
     const date = new Date(timestamp);
@@ -55,22 +56,14 @@ const style = {
 export default function GameCard({ game }) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
-        fetchGameDetails();
-        setOpen(true);
+        fetchGameDetails(game.id).then((gameDetails) => {
+            setGameDetails(gameDetails);
+            setOpen(true);
+        });
     }
     const handleClose = () => setOpen(false);
 
     const [gameDetails, setGameDetails] = useState(null);
-
-    const fetchGameDetails = async () => {
-        try {
-            const response = await fetch(`http://127.0.0.1:8080/game/details?gameId=${game.id}`);
-            const data = await response.json();
-            setGameDetails(data);
-        } catch (error) {
-            console.error("Error fetching game details:", error);
-        }
-    };
 
     function ChildModal({itemList, type}) {
         const [open, setOpen] = React.useState(false);
@@ -197,7 +190,6 @@ export default function GameCard({ game }) {
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
-
                             </div>
                         )}
                     </Box>
