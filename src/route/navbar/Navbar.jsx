@@ -12,6 +12,10 @@ const menus = [
         title:'Player Status',
         path: '/player-status'
     },
+    {
+        title:'Cards List',
+        path: '/cards-list'
+    },
 ];
 export const Navbar = () => {
 
@@ -22,7 +26,7 @@ export const Navbar = () => {
                     <Toolbar disableGutters>
                         <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                             {menus.map(({title, path}) => (
-                                <Button key={title} href={path} style={{ backgroundColor: "cornsilk" }}>
+                                <Button key={title} href={path} style={{ backgroundColor: "#0c1334e8" }}>
                                     {title}
                                 </Button>
                             ))}

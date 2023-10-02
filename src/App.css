@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+/* For WebKit browsers like Chrome, Safari */
+body::-webkit-scrollbar {
+  width: 0;
+  background: transparent; /* make scrollbar transparent */
+}
+
+/* For Firefox */
+body {
+  scrollbar-width: none;
+}

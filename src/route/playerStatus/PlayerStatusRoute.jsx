@@ -3,7 +3,7 @@ import {fetchPlayerWinRate, fetchPlayerWinRateByLeader, fetchPlayerGames} from "
 import { TextField, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import "./playerStatus.css";
-import {PlayerStatus} from "../../components/playerStatus/PlayerStatus";
+import {PlayerStatus} from "../../components/PlayerStatus/PlayerStatus";
 import GamesDetails from "../../components/GameDetails";
 import ClipLoader from "react-spinners/ClipLoader";
 

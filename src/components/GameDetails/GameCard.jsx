@@ -90,7 +90,7 @@ export default function GameCard({ game }) {
                         </Typography>
                         <p id="child-modal-description">
                             {itemList.map(item => (
-                                <Typography key={item.id} variant="body1">
+                                <Typography key={item.id} sx={{ color: 'error.main' }} variant="body1">
                                     {item[displayField]}
                                 </Typography>
                             ))}
@@ -128,16 +128,16 @@ export default function GameCard({ game }) {
                         {gameDetails && (
                             <div>
                                 {/* Basic Game Details */}
-                                <Typography><strong>Game Start Time:</strong> {formatDate(game.gameStartTimestamp)}</Typography>
-                                <Typography><strong>Game End Time:</strong> {formatDate(game.dateOfGameInsertion)}</Typography>
-                                <Typography><strong>Duration:</strong> {getDuration(game.gameStartTimestamp, game.dateOfGameInsertion)}</Typography>
+                                <Typography sx={{ color: 'primary.main' }}><strong>Game Start Time:</strong> {formatDate(game.gameStartTimestamp)}</Typography>
+                                <Typography sx={{ color: 'primary.main' }}><strong>Game End Time:</strong> {formatDate(game.dateOfGameInsertion)}</Typography>
+                                <Typography sx={{ color: 'primary.main' }}><strong>Duration:</strong> {getDuration(game.gameStartTimestamp, game.dateOfGameInsertion)}</Typography>
 
                                 {/* Game Settings */}
-                                <Typography><strong>Rise of Ix:</strong> {gameDetails.riseOfIx ? "Yes" : "No"}</Typography>
-                                <Typography><strong>Immortality:</strong> {gameDetails.immortality ? "Yes" : "No"}</Typography>
-                                <Typography><strong>Red Go First:</strong> {gameDetails.redGoFirst ? "Yes" : "No"}</Typography>
-                                <Typography><strong>Number of Rounds:</strong> {gameDetails.nrounds}</Typography>
-                                <Typography>
+                                <Typography sx={{ color: 'primary.main' }}><strong>Rise of Ix:</strong> {gameDetails.riseOfIx ? "Yes" : "No"}</Typography>
+                                <Typography sx={{ color: 'primary.main' }}><strong>Immortality:</strong> {gameDetails.immortality ? "Yes" : "No"}</Typography>
+                                <Typography sx={{ color: 'primary.main' }}><strong>Red Go First:</strong> {gameDetails.redGoFirst ? "Yes" : "No"}</Typography>
+                                <Typography sx={{ color: 'primary.main' }}><strong>Number of Rounds:</strong> {gameDetails.nrounds}</Typography>
+                                <Typography sx={{ color: 'primary.main' }}>
                                     <strong>Leaders Not Picked:</strong>
                                     {gameDetails && gameDetails.leadersNotPicked && gameDetails.leadersNotPicked.length > 0
                                         ? gameDetails.leadersNotPicked.map(leader => leader.leaderName).join(', ')
