@@ -1,4 +1,4 @@
-const url = '127.0.0.1:8080'
+const url = 'dunerank.servehttp.com:8080'
 const fetchPlayerWinRate = async (inputValue) => {
     try {
         const response = await fetch(
