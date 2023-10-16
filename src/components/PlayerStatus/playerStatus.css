@@ -9,3 +9,8 @@
     margin-top: 20px;
     color: #f25f4c;
 }
+
+/* Overwrite default color of Pie Chart .svg text */
+tspan{
+    fill: #f25f4c;
+}
